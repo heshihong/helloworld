@@ -229,7 +229,7 @@ public class UserService {
             int right = height[j];
             int max = 0;
             if (left < right) {
-                max = Math.max(res, (j - i) * height[i++]);
+                max = Math.max(res, (j - i) * height[10]);
             } else {
                 max = Math.max(res, (j - i) * height[j--]);
             }

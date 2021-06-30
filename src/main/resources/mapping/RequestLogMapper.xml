@@ -3,16 +3,36 @@
 <mapper namespace="com.hsh.aop.mapper.RequestLogMapper">
 
     <resultMap id="BaseResultMap" type="com.hsh.aop.entity.RequestLogPO">
-        <result column="id" jdbcType="INTEGER" property="id" />
-        <result column="url" jdbcType="VARCHAR" property="url" />
-        <result column="respTime" jdbcType="VARCHAR" property="respTime" />
-        <result column="callTime" jdbcType="VARCHAR" property="callTime" />
-        <result column="method" jdbcType="VARCHAR" property="method" />
-        <result column="remoteIP" jdbcType="VARCHAR" property="remoteIP" />
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="respTime" jdbcType="VARCHAR" property="respTime"/>
+        <result column="callTime" jdbcType="VARCHAR" property="callTime"/>
+        <result column="method" jdbcType="VARCHAR" property="method"/>
+        <result column="remoteIP" jdbcType="VARCHAR" property="remoteIP"/>
     </resultMap>
 
-    <select id="insertRequstLog" resultType="com.hsh.aop.entity.RequestLogPO">
-        select * from user where id = #{id}
-    </select>
+    <insert id="insertRequestLog" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.hsh.aop.entity.RequestLogPO">
+        insert into t_interface_log
+        (
+        url,
+        type,
+        callTime,
+        respTime,
+        method,
+        exceptionMessage,
+        remoteIP
+        )
+        values
+        (
+        #{url},
+        #{type},
+        #{callTime},
+        #{respTime},
+        #{method},
+        #{exceptionMessage},
+        #{remoteIP}
+        )
+    </insert>
 
 </mapper>

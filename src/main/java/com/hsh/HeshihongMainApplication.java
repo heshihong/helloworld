@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
-@MapperScan("com.hsh.user.mapper")
+@MapperScan("com.hsh.*.mapper")
 @SpringBootApplication
 public class HeshihongMainApplication {
 
