@@ -49,4 +49,67 @@ public class UserController {
     public int maxArea(@RequestBody int[] nums) {
         return userService.maxArea(nums);
     }
+
+    @GetMapping("reverseList")
+    public ListNode reverseList(@RequestBody ListNode head) {
+        return userService.reverseList(head);
+    }
+
+    @GetMapping("isValid")
+    public boolean isValid(String s) {
+        return userService.isValid(s);
+    }
+
+    @GetMapping("removeDuplicates")
+    public int removeDuplicates(@RequestBody int[] nums) {
+        if (nums == null || nums.length == 0) return 0;
+        int p = 0;
+        int q = 1;
+        while (q < nums.length) {
+            if (nums[p] != nums[q]) {
+                if (q - p > 1) {
+                    nums[p + 1] = nums[q];
+                }
+                p++;
+            }
+            q++;
+        }
+        return p + 1;
+    }
+
+    @GetMapping("rob")
+    public int rob(@RequestBody int[] nums) {
+        int len = nums.length;
+        if (len == 0)
+            return 0;
+        int[] dp = new int[len + 1];
+        dp[0] = 0;
+        dp[1] = nums[0];
+        for (int i = 2; i <= len; i++) {
+            dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i - 1]);
+        }
+        return dp[len];
+    }
+
+    @GetMapping("rob")
+    public void sortColors(@RequestBody int[] nums) {
+        int n = nums.length;
+        int ptr = 0;
+        for (int i = 0; i < n; ++i) {
+            if (nums[i] == 0) {
+                int temp = nums[i];
+                nums[i] = nums[ptr];
+                nums[ptr] = temp;
+                ++ptr;
+            }
+        }
+        for (int i = ptr; i < n; ++i) {
+            if (nums[i] == 1) {
+                int temp = nums[i];
+                nums[i] = nums[ptr];
+                nums[ptr] = temp;
+                ++ptr;
+            }
+        }
+    }
 }

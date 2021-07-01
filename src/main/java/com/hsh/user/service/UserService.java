@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * @Author:wjup
@@ -238,4 +239,41 @@ public class UserService {
         return res;
     }
 
+    /**
+     * 反转链表
+     */
+    public ListNode reverseList(ListNode head) {
+        ListNode prev = null;
+        ListNode curr = head;
+        while (curr != null) {
+            ListNode next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        return prev;
+    }
+
+    public boolean isValid(String s) {
+        if (s.length() % 2 == 0) {
+            if (s.isEmpty())
+                return true;
+            Stack<Character> stack = new Stack<Character>();
+            for (char c : s.toCharArray()) {
+                if (c == '(')
+                    stack.push(')');
+                else if (c == '{')
+                    stack.push('}');
+                else if (c == '[')
+                    stack.push(']');
+                else if (stack.empty() || c != stack.pop())
+                    return false;
+            }
+            if (stack.empty())
+                return true;
+            return false;
+        }
+        return false;
+    }
 }
