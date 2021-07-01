@@ -91,7 +91,7 @@ public class UserController {
         return dp[len];
     }
 
-    @GetMapping("rob")
+    @GetMapping("sortColors")
     public void sortColors(@RequestBody int[] nums) {
         int n = nums.length;
         int ptr = 0;
